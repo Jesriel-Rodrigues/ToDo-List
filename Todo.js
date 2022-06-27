@@ -8,7 +8,7 @@ form.addEventListener('submit', function(event) {
     const InputTarefa = event.target[0]
     const tarefaTexto = InputTarefa.value
     if (InputTarefa.value != '') {
-        criaTarefa(tarefaTexto, 'check')
+        criaTarefa(tarefaTexto, false)
         InputTarefa.value = ''
         InputTarefa.focus()
     }
@@ -18,6 +18,11 @@ function Tarefas(texto, status, id){
     this.tarefa = texto
     this.checkbox = status
     this.idTarefa = id
+
+    this.setCheckbox = ()=>{
+        this.checkbox = this.checkbox != true ? true:false
+        atualizaTarefas()
+    }
 }
 
 
@@ -32,6 +37,8 @@ const criaTarefa = (tarefaTexto, status)=>{
 const criaItem = (tarefa)=>{
     const inputCheckBox = document.createElement('input')
     inputCheckBox.type = 'checkbox'
+    inputCheckBox.checked = tarefa.checkbox
+    inputCheckBox.classList.add('checkbox')
     
     const divItem = document.createElement('div')
     divItem.classList.add('item')
@@ -48,25 +55,40 @@ const criaItem = (tarefa)=>{
     item.appendChild(divItem)
     item.appendChild(button)
     lista.appendChild(item)
-    
+
+    if(inputCheckBox.checked){
+        divItem.classList.add('marcado')
+    }
 }
 
 const atualizaTarefas = ()=>{
     lista.innerHTML = ''
     listaTarefas.forEach(criaItem)
 }
-const excluirItem = (event)=>{
+
+const excluirItem = (index, lista)=>{
+    lista.splice(index,1)
+    atualizaTarefas()
+}
+
+const marcaTarefa = (tarefa)=>{
+    tarefa.setCheckbox()
+}
+
+
+const eventoClick = (event)=>{
     const elemento = event.target
     const item = elemento.parentElement
     listaTarefas.forEach((tarefa, index, lista)=>{
-        if (tarefa.idTarefa == item.id) {
-            lista.splice(index,1)
-            atualizaTarefas()
+        const tarefaClicada = tarefa.idTarefa == item.id
+        if (tarefaClicada && elemento.type == 'button') {
+            excluirItem(index, lista)
+        }else if(tarefaClicada && elemento.type == 'checkbox'){
+            marcaTarefa(tarefa)
         }
     })
 }
 
-document.querySelector('ul').addEventListener('click', excluirItem)
 
-// atualizaTarefas()
+document.querySelector('ul').addEventListener('click', eventoClick)
 

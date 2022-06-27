@@ -51,3 +51,12 @@ ul{
     display: flex;
     flex-direction: row;
 }
+
+.checkbox{
+    height: 25px;
+    width: 25px;
+}
+
+.marcado{
+    text-decoration: line-through;
+}
