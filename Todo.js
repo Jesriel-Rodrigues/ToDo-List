@@ -1,6 +1,7 @@
 let form = document.querySelector('form')
 const lista = document.getElementById('lista-Tarefas')
 const buttons = document.querySelectorAll('.excluir')
+let idTarefa = 0
 let listaTarefas = []
 
 form.addEventListener('submit', function(event) {
@@ -27,7 +28,8 @@ function Tarefas(texto, status, id){
 
 
 const criaTarefa = (tarefaTexto, status)=>{
-    const id = listaTarefas.length
+    const id = idTarefa
+    idTarefa ++
     const novaTarefa = new Tarefas(tarefaTexto, status, id)
     listaTarefas.push(novaTarefa)
     atualizaTarefas()
@@ -83,7 +85,7 @@ const eventoClick = (event)=>{
         const tarefaClicada = tarefa.idTarefa == item.id
         if (tarefaClicada && elemento.type == 'button') {
             excluirItem(index, lista)
-        }else if(tarefaClicada && elemento.type == 'checkbox'){
+        }else if(tarefaClicada && elemento.type != 'button'){
             marcaTarefa(tarefa)
         }
     })

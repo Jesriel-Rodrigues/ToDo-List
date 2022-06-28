@@ -1,7 +1,17 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-size: 25px;
 }
+
+body{
+    background-color: rgb(53, 92, 175);
+}
+
+h1{
+    font-size: 50px;
+}
+
 header, section{
     display: flex;
     align-items: center;
@@ -12,11 +22,12 @@ header, section{
 .conteiner{
     display: flex;
     flex-direction: column;
-    background-color: antiquewhite;
+    background: rgb(29, 49, 92, 0.8);
+    color: rgba(0, 0, 0, 1);
     border-radius: 15px;
     width: 800px;   
-    min-height: 200px;
-    padding: 20px; 
+    min-height: 562px; 
+    box-shadow: 0px 0px 20px;
 }
 
 ul{
@@ -29,6 +40,8 @@ ul{
 .conteiner li{
     display: flex;
     align-items: center;
+    margin: 10px 20px;
+    word-break: break-word;
 }
 
 .excluir{
@@ -36,27 +49,114 @@ ul{
     background-color: brown;
     justify-content: center;
     align-items: center;
-    min-width: 30px;
-    min-height: 30px;
+    min-width: 35px;
+    min-height: 35px;
     flex-grow: 1;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 4px 5px 8px;
 }
 
 .item{
     flex-grow: 95;
     border-radius: 10px;
     background-color: aqua;
-    min-height: 15px;
+    align-items: center;
     margin: 10px 10px;
-    padding: 10px 10px;
+    padding: 0px 10px;
     display: flex;
     flex-direction: row;
+    min-height: 40px;
+    box-shadow: 4px 5px 8px;
+    cursor: pointer;
 }
 
 .checkbox{
-    height: 25px;
-    width: 25px;
+    min-height: 25px;
+    min-width: 25px;
+    cursor: pointer;
 }
 
 .marcado{
     text-decoration: line-through;
+    background-color: rgb(0, 163, 163);
+}
+
+#tarefa{
+    width: 670px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    outline: 0;
+    text-align: center;
+}
+
+
+
+
+
+#enviarTarefa{
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(0, 255, 191);
+}
+
+.inputs{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.linha{
+    background-color: black;
+    height: 5px;
+}
+
+.sombra{
+    box-shadow: 4px 5px 8px;
+}
+
+@media(max-width: 850px){
+
+    .conteiner{
+        width: 350px;
+    }
+
+    #tarefa{
+        width: 260px;
+        border-radius: 0px;
+        height: 40px;
+    }
+
+    #enviarTarefa{
+        height: 40px;
+        width: 50px;
+        border-radius: 0px;
+    }
+
+    .conteiner li{
+        margin: 0px 10px;
+    }
+
+    .item{
+        min-height: 30px;
+    }
+
+    *{
+        font-size: 20px;
+    }
+
+    .excluir{
+        min-height: 25px;
+        min-width: 25px;
+    }
+
+    .checkbox{
+        min-width: 20px;
+        min-height: 20px;
+    }
 }
